@@ -1,0 +1,53 @@
+// Write a C Program to display the Armstrong numbers in between the given range
+#include<stdio.h>
+#include<math.h>
+using namespace std;
+// number of digits in a number is order
+int order(int x)
+{
+    int len = 0;
+    while (x)
+    {
+        len++;
+        x = x/10;
+    }
+    return len;
+}
+
+void armstrong(int low, int high){
+    
+    for(int num = low; num <= high; num++){
+        
+        int sum = 0, temp, digit, len;
+        temp = num;
+        
+        // function to get order(length)
+        len = order(num);
+        
+        // loop to extract digit, find powers & add to sum
+        while(temp != 0)
+        {
+            // extract digit
+            digit = temp % 10;
+
+            // add power to sum
+            sum = sum + pow(digit,len);;
+            temp /= 10;
+        };
+    
+        if(sum == num)
+            printf("%d ",num);
+    }
+}
+
+// Driver Code
+int main ()
+{
+    int low, high;
+ 
+    printf("Enter a lower & upper bounds: ");
+    scanf("%d %d",&low,&high);
+ 
+    // get armstrong numbers
+    armstrong(low, high);
+}
